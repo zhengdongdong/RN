@@ -1,0 +1,56 @@
+// 对象的创建
+var p = new Object();
+p.name = "lk";
+p.age = 25;
+p.haha = function () {
+    console.log(this.name + ":sao kui shuo le haha")
+}
+p.haha();
+
+// 字面量
+var b = {
+    name: "lk",
+    age: 25,
+    haha: function () {
+        console.log(this.name + ":hahahahahaha");
+    }
+}
+b.haha();
+
+//构造函数
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+    this.haha = function () {
+        console.log("sjsdlkfsdl");
+    }
+}
+// 原型链
+Person.prototype.nihao = function () {
+    console.log(" ni hao a");
+}
+
+var c = new Person("lk", 20);
+c.haha();
+c.nihao();
+
+// 继承
+// 父类型
+function SuperType() {
+    this.flag = true;
+}
+SuperType.prototype.getSuperValue = function () {
+    return this.flag;
+}
+
+// 子类型
+function SubType() {
+    this.subFlag = false;
+}
+
+// 继承
+SubType.prototype = new SuperType();
+
+var s1 = new SubType();
+console.log(s1.getSuperValue());
+console.log(s1.subFlag);
