@@ -49,8 +49,55 @@ function SubType() {
 }
 
 // 继承
-SubType.prototype = new SuperType();
+//SubType.prototype = new SuperType();
 
-var s1 = new SubType();
-console.log(s1.getSuperValue());
-console.log(s1.subFlag);
+//var s1 = new SubType();
+//console.log(s1.getSuperValue());
+//console.log(s1.subFlag);
+
+
+
+// 原型继承的缺点 -- 属性共享
+// function SuperClass(){
+//     this.colors = ["red", "blue", "green"];
+// }
+//
+// function SubClass() {
+//
+// }
+//
+// SubClass.prototype = new SuperClass();
+//
+// var s1 = new SubClass();
+// s1.colors.push("white");
+// console.log(s1.colors);
+// var s2 = new SubClass();
+// console.log(s2.colors);
+
+
+// 解决方法, 组合继承
+function SuperClass(name) {
+    this.name = name;
+    this.colors = ["red", "blue", "green"];
+}
+SuperClass.prototype.sayHi = function () {
+    console.log(this.name + ", 你好");
+}
+
+function SubClass(name) {
+    // 使用call继承父类的属性(无法继承原型链上的方法/属性)
+    SuperClass.call(this, name);
+}
+// 使用原型继承父类的原型方法/属性
+SubClass.prototype = new SuperClass();
+// 标明构造方法为自己而不是父类, 在原型继承之后
+SubClass.prototype.constructor = SubClass;
+
+var s1 = new SubClass("dd");
+s1.colors.push("white");
+console.log(s1.colors);
+var s2 = new SubClass("cc");
+console.log(s2.colors);
+s2.sayHi();
+
+console.log(s2.constructor === SuperClass);
