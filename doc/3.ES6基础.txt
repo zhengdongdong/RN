@@ -126,73 +126,99 @@ console.log(sort1);
 
 
 // 解构赋值默认值
-	// let [x=1, y=x] = [];
-	// let [x1=y1, y1=1] = [1,2];
-	// console.log(x, y);
 
-	// 遍历 string
-	// for(let code of "你好"){
-	// 	console.log(code);
-	// }
+// let [x=1, y=x] = [];
+// let [x1=y1, y1=1] = [1,2];
+// console.log(x, y);
 
-	// string 模板
-	// let [name, age] = ["zdd", 20];
-	// console.log(`My name is ${name}, my age is ${age}`);
-	// document.getElementById("div").innerHTML = `My name is ${name}, my age is ${age}`
+// 遍历 string
+// for(let code of "你好"){
+// 	console.log(code);
+// }
 
-	// 函数扩展
-	// 默认值
-	// let func = function(x,y){};
-	// let func2 = function(x= 1,y ,z){};
-	// 输出带默认值参数之前的参数个数(0到第一个不带默认值的参数)
-	// console.log(func.length);  // 2
-	// console.log(func2.length);  // 0
+// string 模板
+// let [name, age] = ["zdd", 20];
+// console.log(`My name is ${name}, my age is ${age}`);
+// document.getElementById("div").innerHTML = `My name is ${name}, my age is ${age}`
 
-	// function bar(func = () => "bar"){
-	// 	console.log(func());
-	// }
-	// bar();
+// 函数扩展
+// 默认值
+// let func = function(x,y){};
+// let func2 = function(x= 1,y ,z){};
+// 输出带默认值参数之前的参数个数(0到第一个不带默认值的参数)
+// console.log(func.length);  // 2
+// console.log(func2.length);  // 0
 
-	// ...
-	// const [last, ...butLast] = [1, 2, 3, 4, 5];
-	// console.log(last, butLast);
+// function bar(func = () => "bar"){
+// 	console.log(func());
+// }
+// bar();
 
-	// function func(i, ...arr){
-	// 	console.log(i, arr);
-	// }
-	// func(1, [1,2,3,4,5])
-	// console.log([..."你好你好你好"].length);
-	// console.log("你好你好你好".length);
+// ...
+// const [last, ...butLast] = [1, 2, 3, 4, 5];
+// console.log(last, butLast);
 
-	// 对象扩展
-	// 属性简介表示法
-	// let foo = "aa";
-	// let fdd = { foo };
-	// let obj = {
-	// 	foo,
-	// 	fdd,
-	// 	method(){
-	// 		return "a";
-	// 	}
-	// }
-	// console.log(obj);
+// function func(i, ...arr){
+// 	console.log(i, arr);
+// }
+// func(1, [1,2,3,4,5])
+// console.log([..."你好你好你好"].length);
+// console.log("你好你好你好".length);
 
-	// function getPoint(){
-	// 	let x = 1;
-	// 	let y = 10;
-	// 	return {x, y};
-	// }
-	// console.log(getPoint());
+// 对象扩展
+// 属性简介表示法
+// let foo = "aa";
+// let fdd = { foo };
+// let obj = {
+// 	foo,
+// 	fdd,
+// 	method(){
+// 		return "a";
+// 	}
+// }
+// console.log(obj);
 
-	// 属性名表达式
-	let propKey = "dd";
-	let obj = { 
-		foo: "foo",
-		[propKey] : "aaaa", // 变量做key []
-		["tes"+"t"] : "cccc" // 表达式做key []
-	};
-	obj.foo = "foo2";
-	console.log(obj);
-	obj[propKey] = "hahaha" // 变量做key []
-	obj["f"+"oo"] = "foo3"; // 表达式做key []
-	console.log(obj);
+// function getPoint(){
+// 	let x = 1;
+// 	let y = 10;
+// 	return {x, y};
+// }
+// console.log(getPoint());
+
+// 属性名表达式
+let propKey = "dd";
+let obj = {
+    foo: "foo",
+    [propKey] : "aaaa", // 变量做key []
+    ["tes"+"t"] : "cccc" // 表达式做key []
+};
+obj.foo = "foo2";
+console.log(obj);
+obj[propKey] = "hahaha" // 变量做key []
+obj["f"+"oo"] = "foo3"; // 表达式做key []
+console.log(obj);
+
+
+// 类 ********************************
+// ES 6 中的 class 属于js一个语法糖, 实质仍是方法
+// 等同于 function Point(x,y){ this.x = x; this.y = y; }
+class Point {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    toString() {
+        console.log(`(x : ${this.x}, y: ${this.y})`);
+    }
+}
+
+// 输出 function, 说明 class 实质
+console.log(typeof Point);
+
+var point = new Point(10, 20);
+point.toString();
+
+// 类中的方法就是原型链上的方法
+console.log(point.constructor === Point.prototype.constructor);
+console.log(point.toString === Point.prototype.toString);
