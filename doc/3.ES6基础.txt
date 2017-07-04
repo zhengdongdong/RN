@@ -222,3 +222,23 @@ point.toString();
 // 类中的方法就是原型链上的方法
 console.log(point.constructor === Point.prototype.constructor);
 console.log(point.toString === Point.prototype.toString);
+
+
+// Promise 异步方法 ********************************
+var promise = new Promise(function (resolve, reject) {
+    console.log("do something");
+    // .... ajax ....
+    if (true) {
+        // request success
+        resolve("success");
+    } else {
+        // request failure
+        reject("failure");
+    }
+})
+
+promise.then(function (value) {
+    console.log(value);
+}, function (value) {
+    console.log(value);
+});
